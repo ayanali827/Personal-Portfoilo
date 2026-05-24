@@ -318,10 +318,30 @@
     .about-text strong {
       color: var(--text);
     }
+    .about-photo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+    }
+    .about-photo img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .about-photo img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
     .about-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      width: 100%;
+      max-width: 300px;
     }
     .stat-card {
       background: var(--bg);
@@ -607,6 +627,12 @@
       .about-grid {
         grid-template-columns: 1fr;
       }
+      .about-photo {
+        order: -1;
+      }
+      .about-photo img {
+        max-width: 220px;
+      }
       .projects-grid {
         grid-template-columns: 1fr;
       }
@@ -637,7 +663,7 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="./ALI_AYAN_RESUME.pdf" class="btn" target="_blank">Resume</a></li>
+        <li><a href="./ALI_AYAN_RESUME.pdf" class="btn" download>Resume</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -691,31 +717,34 @@
       <div class="about-grid">
         <div class="about-text">
           <p>
-            I'm a <strong>research-focused Electrical Engineer</strong> pursuing a <strong>Master's in Robotics and Artificial Intelligence</strong> at <strong>ITMO University</strong>, Saint Petersburg. My work sits at the intersection of perception, planning, and control — building autonomous systems that make intelligent decisions in complex environments.
+            I'm <strong>Ayan Ali</strong> — an Electrical Engineer turned <strong>Robotics &amp; AI master's candidate</strong> (ITMO University, 2024–26) who builds reliable, real-world robot systems by bridging hardware and algorithms. I've designed and integrated motion-planning stacks (A* + DWA + MPC) in MuJoCo, worked with ROS ecosystems, and implemented control and simulation pipelines for UGVs and manipulators.
           </p>
           <p>
-            From implementing <strong>YOLO-based object detection</strong> pipelines on the KITTI dataset to developing <strong>TriNav</strong> — a tri-layer navigation system integrating A*, DWA, and MPC — I focus on translating theoretical algorithms into <strong>deployable, real-world robotic systems</strong>.
+            My strengths lie in: turning algorithms into reproducible simulations and deployments (planning → control → evaluation), pragmatic systems engineering across sensors, actuators, and software, and concise technical communication with cross-functional teams.
           </p>
           <p>
-            I hold a <strong>BE in Electrical Engineering</strong> from <strong>NED University</strong> (CGPA 3.4/4) and have industry experience in renewable energy operations, port infrastructure maintenance, and industrial automation.
+            I thrive in hands-on roles where I can iterate quickly, learn from experiments, and deliver solutions that improve performance and reliability. I'm open to entry-level robotics, autonomy, and controls roles — let's connect if you're hiring, collaborating on research, or building real-world robotic systems.
           </p>
         </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <div class="number">2</div>
-            <p class="label">Years Industry<br>Experience</p>
-          </div>
-          <div class="stat-card">
-            <div class="number">5</div>
-            <p class="label">Major Research<br>Projects</p>
-          </div>
-          <div class="stat-card">
-            <div class="number">3</div>
-            <p class="label">International<br>Programs</p>
-          </div>
-          <div class="stat-card">
-            <div class="number">2</div>
-            <p class="label">Honors &amp;<br>Awards</p>
+        <div class="about-photo">
+          <img src="myavatar.jpeg" alt="Ayan Ali Saleem">
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="number">2</div>
+              <p class="label">Years Industry<br>Experience</p>
+            </div>
+            <div class="stat-card">
+              <div class="number">5</div>
+              <p class="label">Major Research<br>Projects</p>
+            </div>
+            <div class="stat-card">
+              <div class="number">3</div>
+              <p class="label">International<br>Programs</p>
+            </div>
+            <div class="stat-card">
+              <div class="number">2</div>
+              <p class="label">Honors &amp;<br>Awards</p>
+            </div>
           </div>
         </div>
       </div>
