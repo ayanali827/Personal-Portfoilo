@@ -589,16 +589,16 @@ img { display: block; max-width: 100%; }
   --surface-3: #17171d;
   --line: rgba(255,255,255,.13);
   --line-soft: rgba(255,255,255,.07);
-  --text: #f2f2f1;
-  --secondary: #a1a1a8;
-  --muted: #686870;
-  --accent: #f2354f;
-  --accent-bright: #ff6578;
-  --accent-soft: rgba(242,53,79,.13);
+  --text: #e8e8f2;
+  --secondary: #9a9ab0;
+  --muted: #64647a;
+  --accent: #e50914;
+  --accent-bright: #ff3a45;
+  --accent-soft: rgba(229,9,20,.13);
   --accent-ink: #fff;
-  --sans: Arial, Helvetica, sans-serif;
-  --display: Arial, Helvetica, sans-serif;
-  --mono: "Courier New", Courier, monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --display: 'Space Grotesk', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
   --max: 1240px;
 }
 [data-theme="light"] {
