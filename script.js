@@ -263,41 +263,8 @@
     }, { passive: true });
   }
 
-  var projectPin = document.querySelector('.project-pin');
-  var projectViewport = document.querySelector('.project-viewport');
-  var projectStage = document.querySelector('.project-stage');
-  var projectCurrentX = 0;
-  var projectTargetX = 0;
-  var projectFrame = 0;
-  var projectLastFrame = 0;
-
-  function renderProjectStrip(now) {
-    projectFrame = 0;
-    if (!projectStage) return;
-    if (!projectLastFrame) projectLastFrame = now;
-    var elapsed = Math.min(now - projectLastFrame, 48);
-    projectLastFrame = now;
-    var damping = 1 - Math.exp(-elapsed / 140);
-    projectCurrentX += (projectTargetX - projectCurrentX) * damping;
-    if (Math.abs(projectTargetX - projectCurrentX) < 0.25) projectCurrentX = projectTargetX;
-    projectStage.style.transform = 'translate3d(' + projectCurrentX.toFixed(2) + 'px, 0, 0)';
-    if (projectCurrentX !== projectTargetX) projectFrame = window.requestAnimationFrame(renderProjectStrip);
-    else projectLastFrame = 0;
-  }
-
-  function updateProjectStrip() {
-    if (!projectPin || !projectViewport || !projectStage || reduceMotion || window.innerWidth <= 820) return;
-    var pinRect = projectPin.getBoundingClientRect();
-    var pinTop = pinRect.top + window.scrollY;
-    var travel = Math.max(projectStage.scrollWidth - projectViewport.clientWidth, 0);
-    var available = Math.max(projectPin.offsetHeight - projectViewport.offsetHeight, 1);
-    var progress = Math.max(0, Math.min(1, (window.scrollY - pinTop) / available));
-    projectTargetX = -travel * progress;
-    if (!projectFrame) projectFrame = window.requestAnimationFrame(renderProjectStrip);
-  }
-  updateProjectStrip();
-  window.addEventListener('scroll', updateProjectStrip, { passive: true });
-  window.addEventListener('resize', updateProjectStrip, { passive: true });
+  // The project list intentionally uses normal document flow. This avoids scroll-jank
+  // and keeps the Selected work section directly connected to Research signal.
 
   if (finePointer && !reduceMotion) {
     tiltItems.forEach(function (card) {
