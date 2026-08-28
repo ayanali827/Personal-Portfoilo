@@ -902,3 +902,14 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .experience-view-links { padding-top: 14px; gap: 7px; }
   .experience-view-links .card-arrow { min-height: 38px; padding: 7px 9px; font-size: 8px; }
 }
+
+/* Final card-anchored certificate controls: centered inside the visible card, never below it. */
+.experience-card { position: relative; }
+.experience-card-content { display: block; height: auto; padding-bottom: 78px; }
+.experience-view-links { position: absolute; left: 50%; right: auto; bottom: 16px; width: calc(100% - 40px); max-width: calc(100% - 40px); margin: 0; padding: 12px 0 0; border-top: 1px solid var(--line); transform: translateX(-50%); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.experience-view-links .card-arrow { flex: 0 1 auto; max-width: 100%; min-height: 40px; padding: 8px 12px; }
+@media (max-width: 620px) {
+  .experience-card-content { padding-bottom: 72px; }
+  .experience-view-links { bottom: 14px; width: calc(100% - 28px); max-width: calc(100% - 28px); padding-top: 10px; gap: 7px; }
+  .experience-view-links .card-arrow { min-height: 38px; padding: 7px 9px; }
+}
