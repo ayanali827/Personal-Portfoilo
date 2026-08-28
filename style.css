@@ -863,3 +863,16 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .impact-inner > .eyebrow, .impact-inner h2, .impact-detail { grid-column: 1; }
   .impact-inner > .eyebrow { margin: 0; padding: 0; }
 }
+
+/* Final centered heading system and polished experience document actions. */
+.section-heading { align-items: center; text-align: center; }
+.section-heading > div { width: 100%; text-align: center; }
+.section-heading h2, .section-heading .eyebrow, .section-heading .section-summary { text-align: center; }
+.section-heading .section-summary { margin-inline: auto; }
+.experience-view-links .card-arrow { min-height: 38px; padding: 7px 12px; background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; box-shadow: 0 8px 18px rgba(242,53,79,.16); }
+.experience-view-links .card-arrow:hover, .experience-view-links .card-arrow:focus-visible { background: var(--accent-bright); border-color: var(--accent-bright); color: #fff; box-shadow: 0 10px 22px rgba(242,53,79,.25); }
+@media (max-width: 620px) {
+  .section-heading { align-items: center; text-align: center; }
+  .section-heading > div { width: 100%; }
+  .experience-view-links .card-arrow { min-height: 36px; padding-inline: 9px; }
+}
