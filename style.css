@@ -712,3 +712,14 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .clean-portrait .portrait-wrap { width: min(330px, 88vw); height: 395px; }
   .document-links { grid-template-columns: 1fr; }
 }
+
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body { cursor: none; }
+  a, button, [data-tilt] { cursor: none; }
+  .cursor-dot, .cursor-ring { position: fixed; pointer-events: none; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; top: -100px; left: -100px; }
+  .cursor-dot { width: 6px; height: 6px; background: var(--accent); box-shadow: 0 0 8px var(--accent); z-index: 9999; }
+  .cursor-ring { width: 34px; height: 34px; border: 1.5px solid rgba(229,9,20,.45); transition: width .3s ease, height .3s ease, border-color .3s ease, opacity .3s ease; }
+  .cursor-ring.grow { width: 52px; height: 52px; border-color: var(--accent); }
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-dot, .cursor-ring { display: none; } }

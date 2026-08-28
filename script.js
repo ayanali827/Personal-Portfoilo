@@ -26,15 +26,7 @@
     }
   }
 
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
-  setTheme(savedTheme || 'dark');
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-  }
+  setTheme('dark');
 
   function closeMenu() {
     if (!navLinks || !menuToggle) return;
@@ -63,6 +55,30 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   if (!reduceMotion && finePointer) {
+    var cursorDot = document.querySelector('.cursor-dot');
+    var cursorRing = document.querySelector('.cursor-ring');
+    var cursorX = -100;
+    var cursorY = -100;
+    var ringX = -100;
+    var ringY = -100;
+    function moveCursor(event) {
+      cursorX = event.clientX;
+      cursorY = event.clientY;
+      if (cursorDot) { cursorDot.style.left = cursorX + 'px'; cursorDot.style.top = cursorY + 'px'; }
+    }
+    function animateCursor() {
+      ringX += (cursorX - ringX) * 0.16;
+      ringY += (cursorY - ringY) * 0.16;
+      if (cursorRing) { cursorRing.style.left = ringX + 'px'; cursorRing.style.top = ringY + 'px'; }
+      window.requestAnimationFrame(animateCursor);
+    }
+    document.addEventListener('pointermove', moveCursor, { passive: true });
+    document.querySelectorAll('a, button, [data-tilt]').forEach(function (element) {
+      element.addEventListener('pointerenter', function () { if (cursorRing) cursorRing.classList.add('grow'); });
+      element.addEventListener('pointerleave', function () { if (cursorRing) cursorRing.classList.remove('grow'); });
+    });
+    window.requestAnimationFrame(animateCursor);
+
     var heroVisual = document.querySelector('.hero-visual');
     if (heroVisual) {
       heroVisual.addEventListener('pointermove', function (event) {
