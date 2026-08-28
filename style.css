@@ -510,11 +510,11 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .cursor-spotlight { display: none; } .hero-copy, .hero-visual { transform: none; } .telemetry-field, .telemetry-field i, .ticker-track { animation: none; } .glass-card { transform: none; } }
 
 
-/* Verified motion architecture: sticky hero, pinned project sequence, and section-level reveals. */
+/* Verified motion architecture: depth hero, pinned project sequence, and section-level reveals. */
 .site-header { overflow: visible; }
 .nav-progress { position: absolute; left: 48px; right: 48px; bottom: -1px; height: 1px; pointer-events: none; background: var(--line-soft); }
 .nav-progress i { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left center; box-shadow: 0 0 10px var(--accent); }
-.hero { position: sticky; top: 0; height: max(700px, 100vh); min-height: 0; z-index: 0; }
+.hero { position: relative; height: max(700px, 100vh); min-height: 0; z-index: 0; }
 .hero-orbit[data-parallax] { transform: translateY(var(--scroll-shift)); }
 .hero-grid-lines { transform: translateY(calc(var(--scroll-shift) * -.35)); }
 .scroll-section.reveal { opacity: 0; transform: translateY(20px) scale(.95); transition: opacity .85s var(--ease-out), transform .85s var(--ease-out); }
