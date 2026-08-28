@@ -826,3 +826,9 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .experience-view-links { left: 14px; right: 14px; bottom: 14px; }
   .experience-view-links .card-arrow { height: 32px; padding-inline: 8px; font-size: 8px; }
 }
+
+/* Keep the actual uploaded filenames readable inside the matching View controls. */
+.experience-view-links .card-arrow { min-height: 34px; height: auto; line-height: 1.25; white-space: normal; text-align: center; overflow-wrap: anywhere; }
+@media (max-width: 620px) {
+  .experience-view-links .card-arrow { min-height: 32px; height: auto; }
+}
