@@ -876,3 +876,9 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .section-heading > div { width: 100%; }
   .experience-view-links .card-arrow { min-height: 36px; padding-inline: 9px; }
 }
+
+/* Ensure the complete Research Signal statement is white and readable on the accent panel. */
+.impact-stat .impact-inner h2,
+.impact-stat .impact-inner h2 strong,
+.impact-stat .impact-inner h2 .count { color: #fff !important; opacity: 1; }
+.impact-stat .impact-detail p { color: rgba(255,255,255,.9); }
