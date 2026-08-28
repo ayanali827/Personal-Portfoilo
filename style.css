@@ -806,3 +806,14 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 @media (max-width: 520px) {
   .clean-portrait { min-height: 425px; margin-top: -10px; }
 }
+
+/* Experience documents live inside the View action area of their matching cards. */
+.experience-view-links { position: absolute; right: 20px; bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.experience-view-links .card-arrow { position: static; display: inline-flex; align-items: center; justify-content: center; gap: 5px; width: auto; height: 29px; padding: 0 9px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; color: var(--muted); font: 500 9px var(--mono); letter-spacing: .04em; text-decoration: none; white-space: nowrap; }
+.experience-view-links .card-arrow span, .experience-card > .experience-card-content > .card-arrow span { color: inherit; }
+.experience-view-links .card-arrow:hover, .experience-view-links .card-arrow:focus-visible, .experience-card > .experience-card-content > .card-arrow:hover, .experience-card > .experience-card-content > .card-arrow:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+.experience-card > .experience-card-content > .card-arrow { display: inline-flex; align-items: center; justify-content: center; gap: 5px; width: auto; min-width: 66px; padding: 0 10px; font: 500 9px var(--mono); letter-spacing: .04em; text-decoration: none; white-space: nowrap; }
+@media (max-width: 620px) {
+  .experience-view-links { right: 14px; bottom: 14px; gap: 6px; }
+  .experience-view-links .card-arrow { padding-inline: 7px; font-size: 8px; }
+}
