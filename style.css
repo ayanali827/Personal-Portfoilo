@@ -569,3 +569,12 @@ img { display: block; max-width: 100%; }
 .clean-portrait .portrait-wrap::after { display: none !important; }
 .clean-portrait .portrait-wrap { border: 0; box-shadow: none; }
 .clean-portrait .portrait-wrap img { filter: none; }
+
+
+.experience-documents { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+.documents-label { display: block; margin-bottom: 14px; color: var(--muted); font: 9px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.document-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.document-links a { display: flex; justify-content: space-between; gap: 18px; padding: 16px 18px; background: var(--bg); color: var(--secondary); font: 11px/1.5 var(--mono); overflow-wrap: anywhere; transition: background .25s ease, color .25s ease, padding-left .25s var(--ease-out); }
+.document-links a:hover, .document-links a:focus-visible { padding-left: 23px; background: var(--surface); color: var(--accent); }
+.document-links a span { flex: 0 0 auto; color: var(--accent); }
+@media (max-width: 520px) { .document-links { grid-template-columns: 1fr; } .document-links a { padding: 14px; } .document-links a:hover, .document-links a:focus-visible { padding-left: 18px; } }
