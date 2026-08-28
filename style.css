@@ -772,3 +772,22 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 @media (max-width: 620px) {
   #experience .experience-card, #projects .project-card, #projects .project-stage .project-card { flex-basis: min(86vw, 320px); width: min(86vw, 320px); min-width: min(86vw, 320px); }
 }
+
+
+/* Final reference typography scale: compact section headings, restrained card copy, and reference spacing. */
+@media (min-width: 981px) {
+  .container { padding-inline: 60px; }
+  .section { padding: 90px 0; }
+  .section-heading h2, .intro h2, .education-grid h2, .contact h2 { font-size: 1.85rem; line-height: 1.12; letter-spacing: -.01em; font-weight: 700; }
+  .section-heading { gap: 48px; }
+  .section-summary { max-width: 350px; font-size: .82rem; line-height: 1.55; }
+  .experience-card h3, .project-card h3 { font-size: .95rem; line-height: 1.35; letter-spacing: 0; font-weight: 600; }
+  .experience-card-content > p:last-of-type, .project-card > p { font-size: .82rem; line-height: 1.5; }
+  .experience-tag, .project-type, .timeline-date { font-size: .68rem; letter-spacing: .12em; }
+  .company { font-size: .72rem; }
+  .experience-card, .project-stage .project-card, .project-card { min-height: 336px; }
+}
+@media (max-width: 980px) {
+  .section-heading h2, .intro h2, .education-grid h2, .contact h2 { font-size: 1.85rem; line-height: 1.12; letter-spacing: -.01em; }
+  .experience-card h3, .project-card h3 { font-size: .95rem; line-height: 1.35; letter-spacing: 0; }
+}
