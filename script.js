@@ -264,12 +264,15 @@
   }
 
   var projectPin = document.querySelector('.project-pin');
+  var projectViewport = document.querySelector('.project-viewport');
   var projectStage = document.querySelector('.project-stage');
   function updateProjectStrip() {
-    if (!projectPin || !projectStage || reduceMotion || window.innerWidth <= 820) return;
-    var rect = projectPin.getBoundingClientRect();
-    var travel = Math.max(projectStage.scrollWidth - projectPin.clientWidth, 0);
-    var progress = Math.max(0, Math.min(1, (window.innerHeight * .55 - rect.top) / Math.max(projectPin.offsetHeight + window.innerHeight * 1.8, 1)));
+    if (!projectPin || !projectViewport || !projectStage || reduceMotion || window.innerWidth <= 820) return;
+    var pinRect = projectPin.getBoundingClientRect();
+    var pinTop = pinRect.top + window.scrollY;
+    var travel = Math.max(projectStage.scrollWidth - projectViewport.clientWidth, 0);
+    var available = Math.max(projectPin.offsetHeight - projectViewport.offsetHeight, 1);
+    var progress = Math.max(0, Math.min(1, (window.scrollY - pinTop) / available));
     projectStage.style.transform = 'translateX(' + (-travel * progress).toFixed(2) + 'px)';
   }
   updateProjectStrip();
