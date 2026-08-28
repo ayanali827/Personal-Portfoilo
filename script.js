@@ -2,6 +2,7 @@
   'use strict';
 
   var html = document.documentElement;
+  var header = document.querySelector('.site-header');
   var themeToggle = document.getElementById('themeToggle');
   var themeIcon = document.getElementById('themeIcon');
   var menuToggle = document.getElementById('menuToggle');
@@ -44,8 +45,17 @@
       menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     navLinks.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 800) closeMenu(); });
+    document.addEventListener('click', function (event) {
+      if (navLinks.classList.contains('open') && !navLinks.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 820) closeMenu(); });
   }
+
+  function updateHeader() {
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 24);
+  }
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
   if (!reduceMotion && finePointer) {
     var heroVisual = document.querySelector('.hero-visual');
@@ -73,7 +83,7 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
 
-    document.querySelectorAll('.focus-card, .timeline-item, .project-card, .publication, .recognition-list div, .skills-matrix > div').forEach(function (element, index) {
+    document.querySelectorAll('.focus-card, .timeline-item, .project-card, .impact-stat, .publication, .recognition-list div, .skills-matrix > div').forEach(function (element, index) {
       element.classList.add('reveal');
       element.style.transitionDelay = Math.min(index % 4, 3) * 55 + 'ms';
       revealObserver.observe(element);
