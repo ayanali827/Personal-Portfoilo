@@ -187,4 +187,94 @@
   } else {
     window.addEventListener('load', revealInitialPage, { once: true });
   }
+
+  // Scroll-linked depth and restrained cursor interactions keep the static site cinematic without dependencies.
+  var progressBar = document.getElementById('scrollProgress');
+  var spotlight = document.querySelector('.cursor-spotlight');
+  var parallaxItems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  var countItems = Array.prototype.slice.call(document.querySelectorAll('.count'));
+  var tiltItems = Array.prototype.slice.call(document.querySelectorAll('[data-tilt]'));
+  var lastScrollY = -1;
+  var countObserver;
+
+  function formatCount(value, decimals) {
+    return Number(value).toFixed(decimals);
+  }
+
+  function animateCount(element) {
+    if (element.dataset.counted === 'true') return;
+    element.dataset.counted = 'true';
+    var target = Number(element.dataset.count || 0);
+    var prefix = element.dataset.prefix || '';
+    var suffix = element.dataset.suffix || '';
+    var decimals = (String(element.dataset.count).split('.')[1] || '').length;
+    if (reduceMotion) {
+      element.textContent = prefix + formatCount(target, decimals) + suffix;
+      return;
+    }
+    var start = performance.now();
+    var duration = 900;
+    function tick(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = prefix + formatCount(target * eased, decimals) + suffix;
+      if (progress < 1) window.requestAnimationFrame(tick);
+    }
+    window.requestAnimationFrame(tick);
+  }
+
+  if ('IntersectionObserver' in window && countItems.length) {
+    countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .55 });
+    countItems.forEach(function (item) { countObserver.observe(item); });
+  } else {
+    countItems.forEach(animateCount);
+  }
+
+  function updateScrollScene() {
+    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+    if (progressBar) progressBar.style.transform = 'scaleX(' + ratio + ')';
+    if (lastScrollY === window.scrollY) return;
+    lastScrollY = window.scrollY;
+    parallaxItems.forEach(function (item) {
+      var rect = item.getBoundingClientRect();
+      if (rect.bottom < -120 || rect.top > window.innerHeight + 120) return;
+      var speed = Number(item.dataset.parallax || 0);
+      item.style.setProperty('--scroll-shift', (window.scrollY * speed).toFixed(2) + 'px');
+    });
+  }
+  updateScrollScene();
+  window.addEventListener('scroll', updateScrollScene, { passive: true });
+  window.addEventListener('resize', updateScrollScene, { passive: true });
+
+  if (finePointer && spotlight && !reduceMotion) {
+    window.addEventListener('pointermove', function (event) {
+      spotlight.style.setProperty('--spot-x', event.clientX + 'px');
+      spotlight.style.setProperty('--spot-y', event.clientY + 'px');
+    }, { passive: true });
+  }
+
+  if (finePointer && !reduceMotion) {
+    tiltItems.forEach(function (card) {
+      card.addEventListener('pointermove', function (event) {
+        var rect = card.getBoundingClientRect();
+        var x = ((event.clientX - rect.left) / rect.width - .5) * 4;
+        var y = ((event.clientY - rect.top) / rect.height - .5) * -4;
+        card.style.setProperty('--tilt-x', x.toFixed(2) + 'deg');
+        card.style.setProperty('--tilt-y', y.toFixed(2) + 'deg');
+      });
+      card.addEventListener('pointerleave', function () {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+  }
+
 })();

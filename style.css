@@ -479,3 +479,32 @@ img { display: block; max-width: 100%; }
     ::view-transition-old(page), ::view-transition-new(page) { animation: none; }
   }
 }
+
+
+/* Scroll-driven visual layer: deliberately CSS-only so GitHub Pages stays dependency-free. */
+:root { --scroll-shift: 0px; --spot-x: 50vw; --spot-y: 50vh; --tilt-x: 0deg; --tilt-y: 0deg; }
+.cursor-spotlight { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .62; background: radial-gradient(520px circle at var(--spot-x) var(--spot-y), rgba(145,238,209,.085), transparent 68%); mix-blend-mode: screen; transition: opacity .35s ease; }
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; overflow: hidden; background: transparent; pointer-events: none; }
+.scroll-progress span { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left center; box-shadow: 0 0 14px var(--accent); }
+.page-shell { position: relative; z-index: 2; }
+.hero-copy, .hero-visual { transform: translateY(var(--scroll-shift)); will-change: transform; }
+.telemetry-field { position: absolute; inset: 6% 3% 13%; z-index: -1; opacity: .7; pointer-events: none; background-image: radial-gradient(circle, var(--accent) 0 1px, transparent 1.5px); background-size: 28px 28px; mask-image: radial-gradient(ellipse, #000 0%, transparent 70%); animation: telemetry-drift 18s linear infinite; }
+.telemetry-field i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: telemetry-pulse 3s ease-in-out infinite; }
+.telemetry-field i:nth-child(1) { left: 15%; top: 17%; } .telemetry-field i:nth-child(2) { left: 72%; top: 22%; animation-delay: .4s; } .telemetry-field i:nth-child(3) { left: 28%; top: 58%; animation-delay: .8s; } .telemetry-field i:nth-child(4) { left: 83%; top: 67%; animation-delay: 1.2s; } .telemetry-field i:nth-child(5) { left: 51%; top: 8%; animation-delay: 1.6s; } .telemetry-field i:nth-child(6) { left: 9%; top: 77%; animation-delay: 2s; } .telemetry-field i:nth-child(7) { left: 62%; top: 84%; animation-delay: 2.4s; } .telemetry-field i:nth-child(8) { left: 39%; top: 35%; animation-delay: 2.8s; } .telemetry-field i:nth-child(9) { left: 91%; top: 43%; animation-delay: 3.2s; } .telemetry-field i:nth-child(10) { left: 21%; top: 91%; animation-delay: 3.6s; } .telemetry-field i:nth-child(11) { left: 77%; top: 92%; animation-delay: 4s; } .telemetry-field i:nth-child(12) { left: 47%; top: 72%; animation-delay: 4.4s; }
+.glass-card { background: color-mix(in srgb, var(--surface) 72%, transparent); backdrop-filter: blur(13px); box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 20px 60px rgba(0,0,0,.08); transform: perspective(1100px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)); transition: background .35s ease, transform .35s var(--ease-out), box-shadow .35s ease; }
+.glass-card:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 24px 65px rgba(0,0,0,.18); }
+.focus-grid.bento-grid { grid-template-columns: 1.18fr .91fr .91fr; }
+.focus-grid.bento-grid .focus-card:first-child { min-height: 500px; }
+.project-stage { perspective: 1600px; }
+.project-stage .project-card { transform-style: preserve-3d; }
+.ticker { position: relative; display: block; overflow: hidden; white-space: nowrap; padding-right: 0; }
+.ticker-track { display: inline-flex; align-items: center; gap: 15px; min-width: max-content; animation: ticker-scroll 32s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-track p { margin-right: 15px; color: var(--text); }
+.ticker-track span { display: inline-block; }
+.count { display: inline-block; min-width: 2ch; font-variant-numeric: tabular-nums; }
+@keyframes telemetry-drift { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(18px, -12px, 0) rotate(4deg); } }
+@keyframes telemetry-pulse { 0%, 100% { opacity: .25; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.35); } }
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-28%); } }
+@media (max-width: 820px) { .focus-grid.bento-grid { grid-template-columns: 1fr; } .ticker-track { animation-duration: 26s; } }
+@media (prefers-reduced-motion: reduce) { .cursor-spotlight { display: none; } .hero-copy, .hero-visual { transform: none; } .telemetry-field, .telemetry-field i, .ticker-track { animation: none; } .glass-card { transform: none; } }
