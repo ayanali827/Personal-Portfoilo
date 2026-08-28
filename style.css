@@ -882,3 +882,6 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 .impact-stat .impact-inner h2 strong,
 .impact-stat .impact-inner h2 .count { color: #fff !important; opacity: 1; }
 .impact-stat .impact-detail p { color: rgba(255,255,255,.9); }
+
+/* The Research Signal metric must never be hidden by the scroll-reveal state. */
+.impact-stat.reveal { opacity: 1; transform: none; }
