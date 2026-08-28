@@ -560,3 +560,12 @@ img { display: block; max-width: 100%; }
   .project-stage { grid-template-columns: 1fr; }
   .project-stage .project-card { min-height: 360px; }
 }
+
+
+/* Clean portrait treatment: no writing, scan lines, rings, gradients, or decorative frame on the image. */
+.clean-portrait::before,
+.clean-portrait::after,
+.clean-portrait .portrait-wrap::before,
+.clean-portrait .portrait-wrap::after { display: none !important; }
+.clean-portrait .portrait-wrap { border: 0; box-shadow: none; }
+.clean-portrait .portrait-wrap img { filter: none; }
