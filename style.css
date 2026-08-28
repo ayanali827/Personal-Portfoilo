@@ -723,3 +723,33 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .cursor-ring.grow { width: 52px; height: 52px; border-color: var(--accent); }
 }
 @media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-dot, .cursor-ring { display: none; } }
+
+
+/* Reference image card layout for Experience and Projects. */
+.experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 48px; }
+.experience-card { min-width: 0; min-height: 350px; padding: 0; overflow: hidden; border-radius: 14px; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.08); }
+.experience-card::before { content: ''; display: block; height: 166px; background: linear-gradient(135deg, rgba(75,102,79,.82), rgba(112,145,157,.72) 46%, rgba(19,30,24,.98)); border-bottom: 1px solid rgba(255,255,255,.06); }
+.experience-card:nth-child(2)::before { background: linear-gradient(135deg, rgba(67,96,75,.82), rgba(113,147,159,.72) 46%, rgba(18,28,24,.98)); }
+.experience-card:nth-child(3)::before { background: linear-gradient(135deg, rgba(154,42,51,.92), rgba(191,61,49,.78) 42%, rgba(40,17,25,.98)); }
+.experience-card:nth-child(4)::before { background: linear-gradient(135deg, rgba(54,82,74,.88), rgba(109,137,142,.72) 48%, rgba(18,25,27,.98)); }
+.experience-card:hover { border-color: rgba(229,9,20,.42); transform: translateY(-5px); }
+.experience-card-content { position: relative; min-height: 184px; padding: 21px 20px 20px; }
+.experience-tag { display: block; margin-bottom: 10px; color: var(--accent); font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.experience-card h3 { max-width: 100%; margin-bottom: 8px; font: 600 17px/1.25 var(--sans); letter-spacing: -.03em; }
+.experience-card .company { margin: 0 0 9px; font-size: 11px; }
+.experience-card-content > p:last-of-type { max-width: 100%; color: var(--secondary); font-size: 13px; line-height: 1.55; }
+.experience-card .card-arrow { position: absolute; right: 20px; bottom: 18px; width: 29px; height: 29px; margin: 0; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; color: var(--muted); font-size: 16px; }
+.experience-card:hover .card-arrow { background: var(--accent); border-color: var(--accent); color: #fff; }
+.project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 48px; background: transparent; border: 0; }
+.project-stage .project-card, .project-card { width: auto; min-height: 420px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.08); }
+.project-card::before { content: ''; display: block; height: 166px; flex: 0 0 166px; margin: -30px -30px 0; background: linear-gradient(135deg, rgba(39,72,91,.9), rgba(12,18,31,.92)); border-bottom: 1px solid rgba(255,255,255,.06); }
+.project-card:nth-child(2)::before { background: linear-gradient(135deg, rgba(126,153,164,.72), rgba(39,55,70,.9)); }
+.project-card:nth-child(3)::before { background: linear-gradient(135deg, rgba(53,81,93,.88), rgba(18,24,37,.92)); }
+.project-card:nth-child(4)::before { background: linear-gradient(135deg, rgba(151,47,54,.88), rgba(43,18,25,.95)); }
+.project-card h3, .project-card p, .project-card .chip-row, .project-card .project-link, .project-card .project-result, .project-card .perception-visual, .project-card .pv-visual { position: relative; z-index: 1; }
+.project-card h3 { margin-top: 38px; font-size: 23px; letter-spacing: -.045em; }
+.project-featured { grid-column: span 2; }
+.project-featured::before { background: linear-gradient(135deg, rgba(47,69,88,.92), rgba(10,16,24,.94)); }
+@media (max-width: 980px) { .experience-grid, .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .project-featured { grid-column: span 2; } }
+@media (max-width: 620px) { .experience-grid, .project-grid { grid-template-columns: 1fr; } .project-featured { grid-column: auto; } .experience-card, .project-stage .project-card, .project-card { min-height: 370px; } .experience-card::before, .project-card::before { height: 145px; flex-basis: 145px; } }
+@media (prefers-reduced-motion: reduce) { .experience-card:hover, .project-card:hover { transform: none; } }
