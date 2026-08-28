@@ -885,3 +885,11 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 
 /* The Research Signal metric must never be hidden by the scroll-reveal state. */
 .impact-stat.reveal { opacity: 1; transform: none; }
+
+/* Center the certificate/document toggle group inside each experience card. */
+.experience-view-links { left: 50%; right: auto; width: max-content; max-width: calc(100% - 40px); justify-content: center; transform: translateX(-50%); }
+.experience-view-links .card-arrow { flex: 0 1 auto; max-width: 100%; }
+@media (max-width: 620px) {
+  .experience-view-links { left: 50%; right: auto; max-width: calc(100% - 28px); transform: translateX(-50%); }
+  .experience-view-links .card-arrow { flex: 0 1 auto; }
+}
