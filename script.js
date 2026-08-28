@@ -2,7 +2,10 @@
   'use strict';
 
   var html = document.documentElement;
+  var body = document.body;
   var header = document.querySelector('.site-header');
+  var pageShell = document.getElementById('pageShell');
+  var pageCurtain = document.getElementById('pageCurtain');
   var themeToggle = document.getElementById('themeToggle');
   var themeIcon = document.getElementById('themeIcon');
   var menuToggle = document.getElementById('menuToggle');
@@ -10,6 +13,8 @@
   var navAnchors = navLinks ? Array.prototype.slice.call(navLinks.querySelectorAll('a[href^="#"]')) : [];
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
+  var transitionMs = 420;
+  var transitionBusy = false;
 
   function setTheme(theme) {
     html.setAttribute('data-theme', theme);
@@ -92,15 +97,94 @@
     document.querySelectorAll('.reveal').forEach(function (element) { element.classList.add('is-visible'); });
   }
 
+  function updateActiveNav(id) {
+    navAnchors.forEach(function (link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+    });
+  }
+
+  function scrollToHash(hash) {
+    var target = document.querySelector(hash);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    updateActiveNav(target.id);
+  }
+
+  function runInPageTransition(update) {
+    if (!pageShell || reduceMotion || transitionBusy) {
+      update();
+      return;
+    }
+
+    transitionBusy = true;
+    pageShell.classList.remove('is-entering');
+    pageShell.classList.add('is-exiting');
+
+    window.setTimeout(function () {
+      update();
+      pageShell.classList.remove('is-exiting');
+      pageShell.classList.add('is-entering');
+      window.setTimeout(function () {
+        pageShell.classList.remove('is-entering');
+        transitionBusy = false;
+      }, transitionMs);
+    }, transitionMs);
+  }
+
+  function isSameDocumentHashLink(link) {
+    if (!link || !link.getAttribute('href')) return false;
+    var rawHref = link.getAttribute('href');
+    if (rawHref.charAt(0) !== '#') return false;
+    return !!document.querySelector(rawHref);
+  }
+
+  document.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      if (!isSameDocumentHashLink(link)) return;
+      var hash = link.getAttribute('href');
+      if (!hash || hash === window.location.hash) return;
+      event.preventDefault();
+      closeMenu();
+      runInPageTransition(function () {
+        history.pushState(null, '', hash);
+        scrollToHash(hash);
+      });
+    });
+  });
+
+  window.addEventListener('popstate', function () {
+    if (window.location.hash) {
+      runInPageTransition(function () { scrollToHash(window.location.hash); });
+    } else {
+      runInPageTransition(function () { window.scrollTo({ top: 0, behavior: 'auto' }); updateActiveNav('top'); });
+    }
+  });
+
   if ('IntersectionObserver' in window) {
     var sectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        navAnchors.forEach(function (link) {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-        });
+        updateActiveNav(entry.target.id);
       });
     }, { rootMargin: '-28% 0px -62% 0px', threshold: 0 });
     document.querySelectorAll('main section[id]').forEach(function (section) { sectionObserver.observe(section); });
+  }
+
+  function dismissCurtain() {
+    if (!pageCurtain) return;
+    pageCurtain.classList.add('is-dismissed');
+    body.classList.add('is-ready');
+  }
+
+  function revealInitialPage() {
+    if (pageShell && !reduceMotion) pageShell.classList.add('is-entering');
+    window.setTimeout(dismissCurtain, reduceMotion ? 0 : 180);
+    window.setTimeout(dismissCurtain, 1600);
+  }
+
+  if (document.readyState === 'complete') {
+    revealInitialPage();
+  } else {
+    window.addEventListener('load', revealInitialPage, { once: true });
   }
 })();
