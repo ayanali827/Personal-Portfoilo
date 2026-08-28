@@ -817,3 +817,12 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .experience-view-links { right: 14px; bottom: 14px; gap: 6px; }
   .experience-view-links .card-arrow { padding-inline: 7px; font-size: 8px; }
 }
+
+/* Make document actions unmistakable and fully visible inside experience cards. */
+.experience-view-links { left: 20px; right: 20px; bottom: 16px; gap: 8px; }
+.experience-view-links .card-arrow { flex: 1 1 auto; min-width: 0; height: 34px; padding: 0 10px; border-radius: 4px; background: rgba(242,53,79,.08); border-color: rgba(242,53,79,.42); color: var(--accent); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
+.experience-view-links .card-arrow:hover, .experience-view-links .card-arrow:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); }
+@media (max-width: 620px) {
+  .experience-view-links { left: 14px; right: 14px; bottom: 14px; }
+  .experience-view-links .card-arrow { height: 32px; padding-inline: 8px; font-size: 8px; }
+}
