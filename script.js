@@ -88,7 +88,7 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
 
-    document.querySelectorAll('.focus-card, .timeline-item, .project-card, .impact-stat, .publication, .recognition-list div, .skills-matrix > div').forEach(function (element, index) {
+    document.querySelectorAll('.scroll-section, .focus-card, .timeline-item, .project-card, .impact-stat, .publication, .recognition-list div, .skills-matrix > div').forEach(function (element, index) {
       element.classList.add('reveal');
       element.style.transitionDelay = Math.min(index % 4, 3) * 55 + 'ms';
       revealObserver.observe(element);
@@ -190,6 +190,7 @@
 
   // Scroll-linked depth and restrained cursor interactions keep the static site cinematic without dependencies.
   var progressBar = document.getElementById('scrollProgress');
+  var navProgress = document.getElementById('navProgress');
   var spotlight = document.querySelector('.cursor-spotlight');
   var parallaxItems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var countItems = Array.prototype.slice.call(document.querySelectorAll('.count'));
@@ -241,6 +242,7 @@
     var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     var ratio = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
     if (progressBar) progressBar.style.transform = 'scaleX(' + ratio + ')';
+    if (navProgress) navProgress.style.transform = 'scaleX(' + ratio + ')';
     if (lastScrollY === window.scrollY) return;
     lastScrollY = window.scrollY;
     parallaxItems.forEach(function (item) {
@@ -260,6 +262,19 @@
       spotlight.style.setProperty('--spot-y', event.clientY + 'px');
     }, { passive: true });
   }
+
+  var projectPin = document.querySelector('.project-pin');
+  var projectStage = document.querySelector('.project-stage');
+  function updateProjectStrip() {
+    if (!projectPin || !projectStage || reduceMotion || window.innerWidth <= 820) return;
+    var rect = projectPin.getBoundingClientRect();
+    var travel = Math.max(projectStage.scrollWidth - projectPin.clientWidth, 0);
+    var progress = Math.max(0, Math.min(1, (window.innerHeight * .55 - rect.top) / Math.max(projectPin.offsetHeight + window.innerHeight * 1.8, 1)));
+    projectStage.style.transform = 'translateX(' + (-travel * progress).toFixed(2) + 'px)';
+  }
+  updateProjectStrip();
+  window.addEventListener('scroll', updateProjectStrip, { passive: true });
+  window.addEventListener('resize', updateProjectStrip, { passive: true });
 
   if (finePointer && !reduceMotion) {
     tiltItems.forEach(function (card) {
