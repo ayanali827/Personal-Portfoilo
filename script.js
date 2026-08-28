@@ -225,6 +225,10 @@
     var prefix = element.dataset.prefix || '';
     var suffix = element.dataset.suffix || '';
     var decimals = (String(element.dataset.count).split('.')[1] || '').length;
+    if (element.dataset.static === 'true') {
+      element.textContent = prefix + formatCount(target, decimals) + suffix;
+      return;
+    }
     if (reduceMotion) {
       element.textContent = prefix + formatCount(target, decimals) + suffix;
       return;
