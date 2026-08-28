@@ -27,6 +27,20 @@
     navLinks.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { navLinks.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }); });
   }
 
+  if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(pointer:fine)').matches) {
+    var heroVisual = document.querySelector('.hero-visual');
+    if (heroVisual) {
+      heroVisual.addEventListener('pointermove', function (event) {
+        var rect = heroVisual.getBoundingClientRect();
+        var x = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+        var y = ((event.clientY - rect.top) / rect.height - 0.5) * 12;
+        heroVisual.style.setProperty('--mx', x.toFixed(2) + 'px');
+        heroVisual.style.setProperty('--my', y.toFixed(2) + 'px');
+      });
+      heroVisual.addEventListener('pointerleave', function () { heroVisual.style.setProperty('--mx', '0px'); heroVisual.style.setProperty('--my', '0px'); });
+    }
+  }
+
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); } }); }, { threshold: 0.1 });
     document.querySelectorAll('.focus-card, .timeline-item, .project-card, .publication, .recognition-list div, .skills-matrix > div').forEach(function (el) { el.classList.add('reveal'); revealObserver.observe(el); });
