@@ -940,3 +940,95 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 
 /* Clear legacy edge offsets on single-document buttons before centering them. */
 .experience-view-links.single-doc .card-arrow { right: auto; bottom: auto; }
+
+/* Shared document actions: consistent theme, sizing, and centered alignment. */
+.document-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  width: max-content;
+  max-width: 100%;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent) !important;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--accent-ink) !important;
+  font: 600 9px/1.25 var(--mono);
+  letter-spacing: .06em;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s var(--ease-out);
+}
+.document-action:hover,
+.document-action:focus-visible {
+  border-color: var(--accent-bright);
+  background: var(--accent-bright);
+  color: var(--accent-ink) !important;
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 25%, transparent);
+  transform: translateY(-2px);
+}
+.document-action:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+.publication-link {
+  margin: 18px auto 0 !important;
+}
+.publication > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.publication > div > p,
+.publication > div > h3 {
+  width: 100%;
+}
+.recognition-list > div {
+  display: grid;
+  grid-template-columns: minmax(120px, .7fr) minmax(220px, 1.5fr) minmax(190px, auto);
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0;
+}
+.recognition-list > div:hover {
+  padding-left: 0;
+}
+.recognition-list > div > strong,
+.recognition-list > div > span {
+  text-align: center;
+}
+.recognition-list > div > strong,
+.recognition-list > div > span,
+.recognition-link {
+  justify-self: center;
+}
+.recognition-link {
+  margin: 0 !important;
+  white-space: nowrap;
+}
+@media (max-width: 820px) {
+  .recognition-list > div {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 9px;
+    text-align: center;
+  }
+  .recognition-list > div > span {
+    margin-top: 0;
+  }
+}
+@media (max-width: 620px) {
+  .document-action {
+    min-height: 38px;
+    padding: 7px 10px;
+    font-size: 8px;
+  }
+  .publication-link,
+  .recognition-link {
+    width: min(100%, 250px);
+  }
+}
