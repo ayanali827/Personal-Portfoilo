@@ -1103,3 +1103,90 @@ h1, h2, h3, h4, h5, h6 {
   .entry-media { margin: 0; }
   .entry-media figcaption { font-size: 6px; }
 }
+
+
+/* Final Experience card consistency and scroll affordance. */
+#experience .experience-grid {
+  align-items: stretch;
+}
+#experience .experience-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 0;
+}
+#experience .experience-card-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 252px;
+  height: auto;
+  padding: 21px 20px 20px;
+  overflow: visible;
+}
+#experience .experience-card-content > p:last-of-type {
+  display: block;
+  max-height: none;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+#experience .experience-view-links {
+  position: static;
+  width: 100%;
+  max-width: none;
+  margin-top: auto;
+  transform: none;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  padding-top: var(--toggle-group-pad-top);
+  gap: var(--toggle-group-gap);
+}
+#experience .experience-view-links.single-doc {
+  grid-template-columns: minmax(0, 1fr);
+}
+#experience .experience-view-links:empty {
+  display: none;
+}
+#experience .toggle-control {
+  min-width: 0;
+  min-height: var(--toggle-control-height);
+  padding: var(--toggle-pad-y) var(--toggle-pad-x);
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: normal;
+  text-wrap: balance;
+}
+.experience-scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font: 9px var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.experience-scroll-hint b {
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+@media (max-width: 620px) {
+  #experience .experience-card-content {
+    min-height: 0;
+    padding: 21px 20px 20px;
+  }
+  #experience .experience-view-links,
+  #experience .experience-view-links.single-doc {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .experience-scroll-hint {
+    justify-content: center;
+    margin-top: 12px;
+  }
+}
