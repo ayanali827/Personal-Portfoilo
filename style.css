@@ -939,3 +939,70 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   .publication-link,
   .recognition-link { width: min(100%, 250px); }
 }
+
+
+/* Verified accessibility and control-alignment system. */
+:root {
+  --toggle-gap: 8px;
+  --toggle-pad-y: 8px;
+  --toggle-pad-x: 14px;
+  --toggle-group-gap: 8px;
+  --toggle-group-pad-top: 12px;
+  --toggle-control-height: 40px;
+}
+
+/* Every heading on the site, including section and card titles, shares one centered alignment rule. */
+h1, h2, h3, h4, h5, h6 {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* The impact statistic has an explicit high-contrast treatment independent of theme ink tokens. */
+.impact-stat {
+  background: var(--bg-deep);
+  color: var(--text);
+}
+.impact-stat h2 {
+  color: var(--text);
+}
+.impact-stat h2 strong,
+.impact-stat h2 .count {
+  color: #ffffff;
+}
+.impact-stat .eyebrow {
+  color: var(--accent);
+}
+.impact-stat .impact-rule {
+  background: var(--accent);
+}
+.impact-stat .impact-detail p {
+  color: var(--secondary);
+}
+
+/* All document/action controls use the same internal spacing scale. */
+.experience-view-links {
+  gap: var(--toggle-group-gap);
+  padding-top: var(--toggle-group-pad-top);
+}
+.publication > div,
+.recognition-list > div {
+  gap: var(--toggle-group-gap);
+}
+.publication-link,
+.recognition-link { margin: 0 !important; }
+.toggle-control {
+  gap: var(--toggle-gap);
+  min-height: var(--toggle-control-height);
+  padding: var(--toggle-pad-y) var(--toggle-pad-x);
+}
+
+@media (max-width: 620px) {
+  .experience-view-links {
+    gap: var(--toggle-group-gap);
+    padding-top: var(--toggle-group-pad-top);
+  }
+  .toggle-control {
+    min-height: var(--toggle-control-height);
+    padding: var(--toggle-pad-y) var(--toggle-pad-x);
+  }
+}
