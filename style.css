@@ -1048,3 +1048,58 @@ h1, h2, h3, h4, h5, h6 {
   .entry-media { margin-bottom: 20px; }
   .entry-media figcaption { font-size: 6px; }
 }
+
+
+/* Final image identity system: one restrained grayscale treatment, one card geometry, one spacing rule. */
+.entry-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: var(--surface-2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+  isolation: isolate;
+}
+.entry-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(6,8,12,.18), rgba(6,8,12,.58));
+}
+.entry-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.08) brightness(.84);
+}
+.entry-media figcaption {
+  z-index: 2;
+  right: 8px;
+  bottom: 7px;
+  padding: 3px 6px;
+  background: rgba(5,5,7,.76);
+  color: #fff;
+  font: 7px/1.2 var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.entry-media figcaption a { color: inherit; }
+.experience-card::before,
+.project-card::before { display: none; }
+.experience-card { padding: 0; }
+.experience-card-content { padding: 21px 20px 20px; }
+.project-card { padding: 0; }
+.project-card > :not(.entry-media) { margin-left: 20px; margin-right: 20px; }
+.project-card > .project-top { margin-top: 21px; }
+#projects .project-card h3 { margin-top: 0; }
+@media (max-width: 620px) {
+  .entry-media { margin: 0; }
+  .entry-media figcaption { font-size: 6px; }
+}
