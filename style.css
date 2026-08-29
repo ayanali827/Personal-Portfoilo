@@ -975,6 +975,9 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
   outline: 2px solid var(--accent-bright);
   outline-offset: 3px;
 }
+.publication .document-action {
+  font-size: 9px;
+}
 .publication-link {
   margin: 18px auto 0 !important;
 }
