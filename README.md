@@ -28,7 +28,7 @@ The Experience and Projects cards use unique, locally stored images selected for
 | Entry | Local asset | Source and license |
 | --- | --- | --- |
 | Operations Management Engineer — Sapphire Renewables | `assets/portfolio/experience-sapphire-wind.jpg` | [Wind turbine maintenance](https://commons.wikimedia.org/wiki/File:Wind_turbine_maintenance_(51689968067).jpg), public domain, U.S. Department of Energy |
-| Engineering Trainee — Winston Marriot Ltd. | `assets/portfolio/experience-winston-engineering-lab.jpg` | [Ford Engineering Laboratories detail](https://commons.wikimedia.org/wiki/File:Ford_Engineering_Laboratories,_main_entrance,_detail_of_relief_and_inscription_above_entrance_to_Ford_Engineering_Laboratories._(5f69733a056a4fa09113ed9fabc40a07).jpg), public domain |
+| Engineering Trainee — Winston Marriot Ltd. | `assets/portfolio/experience-winston-network-rack.jpg` | [Computer rack with switches and cables](https://commons.wikimedia.org/wiki/File:Computer_rack_with_switches_and_cables.jpg), CC BY-SA 3.0, photographed by Yann |
 | Maintenance Engineering Intern — SAPT | `assets/portfolio/experience-sapt-industrial-maintenance.jpg` | [NASA Industrial Plant maintenance facility](https://commons.wikimedia.org/wiki/File:INTERIOR_MAIN_SPACE_DETAIL_VIEW,_FACING_EAST._BUILDING_NO_42_GARAGE_and_TRANSPORTATION_MAINTENANCE_FACILITY_-_NASA_Industrial_Plant,_Garage_and_Transportation_Maintenance_Facility,_HAER_CA-310-H-6.tif), public domain |
 | Maintenance Intern — Unicol Limited | `assets/portfolio/experience-unicol-industrial-robot.jpg` | [Industrial robot at a Giga Press](https://commons.wikimedia.org/wiki/File:20200922-giga-press-idra-ol6100cs-tesla-fremont-dcm1-robot-megacasting-crop.png), CC BY 3.0 |
 | Real-Time 3D Perception for Autonomous Ground Vehicles | `assets/portfolio/project-msc-lidar-point-cloud.png` | [Ouster OS1-64 LiDAR point cloud](https://commons.wikimedia.org/wiki/File:Ouster_OS1-64_lidar_point_cloud_of_intersection_of_Folsom_and_Dore_St,_San_Francisco.png), CC BY 4.0, Daniel L. Lu |
@@ -37,3 +37,7 @@ The Experience and Projects cards use unique, locally stored images selected for
 | Hybrid PV System Design | `assets/portfolio/project-hybrid-pv-solar-farm.jpg` | [Photovoltaic panels at a solar farm near Vulcan](https://commons.wikimedia.org/wiki/File:Photovoltaic_Panels_at_a_Solar_Farm_Near_Vulcan,_Alberta.jpg), CC BY 4.0 |
 
 All local assets are used under the license terms shown above. No company logo or trademarked brand image was added for the Winston Marriot entry.
+
+### Winston Marriot card image update
+
+The Winston Marriot card now uses [Computer rack with switches and cables](https://commons.wikimedia.org/wiki/File:Computer_rack_with_switches_and_cables.jpg), photographed by Yann and licensed CC BY-SA 3.0. The repository uses the unbranded rack image at `assets/portfolio/experience-winston-network-rack.jpg`; attribution is retained in the HTML source comment and this README rather than rendered over the image.
