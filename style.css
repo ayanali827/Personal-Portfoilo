@@ -715,6 +715,7 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 .project-card:nth-child(2)::before { background: linear-gradient(135deg, rgba(126,153,164,.72), rgba(39,55,70,.9)); }
 .project-card:nth-child(3)::before { background: linear-gradient(135deg, rgba(53,81,93,.88), rgba(18,24,37,.92)); }
 .project-card:nth-child(4)::before { background: linear-gradient(135deg, rgba(151,47,54,.88), rgba(43,18,25,.95)); }
+.project-card:nth-child(5)::before { background: linear-gradient(135deg, rgba(15,118,110,.88), rgba(12,18,31,.95)); }
 .project-card h3, .project-card p, .project-card .chip-row, .project-card .project-link, .project-card .project-result, .project-card .perception-visual, .project-card .pv-visual { position: relative; z-index: 1; }
 .project-card h3 { margin-top: 38px; font-size: 23px; letter-spacing: -.045em; }
 .project-featured { grid-column: span 2; }
@@ -726,7 +727,9 @@ body::before { opacity: .16; background-image: linear-gradient(rgba(255,255,255,
 
 /* Screenshot-faithful horizontal card rows: three full cards plus a clipped next card on desktop. */
 @media (min-width: 981px) {
-  #experience .experience-grid, #projects .project-grid { display: flex; flex-wrap: nowrap; overflow-x: hidden; align-items: stretch; gap: 18px; padding-bottom: 2px; }
+  #experience .experience-grid, #projects .project-grid { display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; align-items: stretch; gap: 18px; padding-bottom: 2px; }
+  #experience .experience-grid::-webkit-scrollbar, #projects .project-grid::-webkit-scrollbar { display: none; }
+  #experience .experience-card, #projects .project-card { scroll-snap-align: start; }
   #experience .experience-card, #projects .project-card, #projects .project-stage .project-card { flex: 0 0 300px; width: 300px; min-width: 300px; }
   #experience .experience-card { min-height: 350px; }
   #projects .project-card, #projects .project-stage .project-card { min-height: 420px; }
